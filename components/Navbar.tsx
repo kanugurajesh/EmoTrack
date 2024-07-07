@@ -6,7 +6,7 @@ import MobileNavbar from './MobileNavbar'
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState(1)
   const [hover, setHover] = useState(false)
-  const [width, setWidth] = useState(1000)
+  const [width, setWidth] = useState(window.innerWidth)
 
   useEffect(() => {
     setWidth(window.innerWidth)

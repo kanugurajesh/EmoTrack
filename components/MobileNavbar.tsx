@@ -16,7 +16,7 @@ const MobileNavbar = () => {
           <h1 className="">moTrack</h1>
         </Link>
         <div
-          className="flex flex-col gap-1"
+          className="flex flex-col gap-1 cursor-pointer"
           onClick={() => setActiveMenu(!activeMenu)}
         >
           <div

@@ -8,12 +8,13 @@ const MobileNavbar = () => {
 
   useEffect(() => {
     if (activeMenu) {
-      document.body.style.overflow = 'hidden'
-      document.body.style.height = '100vh'
+      // document.body.style.overflow = 'hidden'
+      // document.body.style.height = '100vh'
       document.body.style.position = 'fixed'
     } else {
-      document.body.style.overflow = 'auto'
-      document.body.style.height = 'auto'
+      // document.body.style.overflow = 'auto'
+      // document.body.style.height = 'auto'
+      document.body.style.position = 'relative'
     }
 
     // Clean up the effect when the component unmounts or activeMenu changes

@@ -1,10 +1,24 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const MobileNavbar = () => {
   const [activeMenu, setActiveMenu] = useState(false)
+
+  useEffect(() => {
+    if (activeMenu) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+
+    // Clean up the effect when the component unmounts or activeMenu changes
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [activeMenu])
+
   return (
     <div className={`relative z-10`}>
       <nav className="p-4 px-10 flex items-center justify-between">

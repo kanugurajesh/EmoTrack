@@ -6,7 +6,7 @@ import { useState } from 'react'
 const MobileNavbar = () => {
   const [activeMenu, setActiveMenu] = useState(false)
   return (
-    <div className="relative">
+    <div className={`relative z-10`}>
       <nav className="p-4 px-10 flex items-center justify-between">
         <Link
           href="/"

@@ -11,7 +11,7 @@ import {
 
 export function CarouselComponent() {
   return (
-    <Carousel className="w-full max-w-lg max-xl:max-w-md max-desktop:max-w-sm max-laptop:max-w-xs">
+    <Carousel className="w-full max-w-lg max-xl:max-w-md max-desktop:max-w-sm max-laptop:max-w-xs z-0">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>

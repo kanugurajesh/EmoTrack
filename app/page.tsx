@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="px-10 flex justify-between items-center mt-20 max-tablet:flex-col-reverse max-tablet:gap-10">
+    <main className="px-10 flex justify-between items-center mt-20 max-tablet:flex-col-reverse max-tablet:gap-10 mb-10">
       <div className="flex flex-col gap-10 max-tablet:ml-6">
         <div className="flex flex-col gap-4">
           <div className="overflow-hidden">

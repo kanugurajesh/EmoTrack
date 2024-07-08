@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        'mobile': '480px',    // Custom breakpoint for mobile devices
+        'tablet': '768px',    // Custom breakpoint for tablets
+        'desktop': '1300px',  // Custom breakpoint for desktops
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -67,10 +72,20 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "moveUp": {
+          from: { transform: "translateY(10vh)" },
+          to: { transform: "translateY(0)" },
+        },
+        "moveDown": {
+          from: { transform: "translateY(-10vh)" },
+          to: { transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "moveUp": "moveUp 0.5s ease-out",
+        "moveDown": "moveDown 0.5s ease-out",
       },
     },
   },

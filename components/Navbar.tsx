@@ -6,7 +6,7 @@ import MobileNavbar from './MobileNavbar'
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState(1)
   const [hover, setHover] = useState(false)
-  const [width, setWidth] = useState(window.innerWidth)
+  const [width, setWidth] = useState(window.innerWidth || 0)
 
   useEffect(() => {
     setWidth(window.innerWidth)
@@ -29,8 +29,8 @@ const Navbar = () => {
               href="/"
               className="flex items-center font-black text-2xl hover:scale-105 transition-all ease-in-out duration-300"
             >
-              <h1 className="text-yellow-500 text-5xl mr-1">E</h1>
-              <h1 className="">moTrack</h1>
+              <h1 className="text-yellow-500 text-6xl mr-1">E</h1>
+              <h1 className="text-4xl">motrack</h1>
             </Link>
             <div className="flex gap-10 font-bold relative">
               <Link

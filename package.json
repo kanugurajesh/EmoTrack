@@ -20,6 +20,9 @@
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
+    "react-spinners": "^0.14.1",
+    "resend": "^3.4.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },

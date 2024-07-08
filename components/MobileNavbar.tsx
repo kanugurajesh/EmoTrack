@@ -92,17 +92,17 @@ const MobileNavbar = () => {
           </div>
           <div className='group'>
             <Link
-              href="/"
+              href="/sign-up"
               className="hover:text-black transition-all ease-in-out duration-300"
               onClick={() => setActiveMenu(false)}
             >
-              Login
+              Register
             </Link>
             <div className="w-0 h-1 group-hover:w-full bg-black transition-all ease-in-out duration-700"></div>
           </div>
           <div className='group'>
             <Link
-              href="/"
+              href="/contact"
               className="hover:text-black transition-all ease-in-out duration-300"
               onClick={() => setActiveMenu(false)}
             >

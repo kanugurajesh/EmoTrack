@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       screens: {
-        'mobile': '480px',    // Custom breakpoint for mobile devices
+        'mobile': '500px',    // Custom breakpoint for mobile devices
         'tablet': '880px',    // Custom breakpoint for tablets
         'laptop': '1100px',   // Custom breakpoint for laptops
         'desktop': '1200px',  // Custom breakpoint for desktops

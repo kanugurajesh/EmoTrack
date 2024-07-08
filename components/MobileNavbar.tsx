@@ -64,6 +64,7 @@ const MobileNavbar = () => {
             <Link
               href="/"
               className="hover:text-black transition-all ease-in-out duration-300"
+              onClick={() => setActiveMenu(false)}
             >
               Home
             </Link>
@@ -73,6 +74,7 @@ const MobileNavbar = () => {
             <Link
               href="/"
               className="hover:text-black transition-all ease-in-out duration-300"
+              onClick={() => setActiveMenu(false)}
             >
               About
             </Link>
@@ -82,6 +84,7 @@ const MobileNavbar = () => {
             <Link
               href="/"
               className="hover:text-black transition-all ease-in-out duration-300"
+              onClick={() => setActiveMenu(false)}
             >
               Services
             </Link>
@@ -91,6 +94,7 @@ const MobileNavbar = () => {
             <Link
               href="/"
               className="hover:text-black transition-all ease-in-out duration-300"
+              onClick={() => setActiveMenu(false)}
             >
               Login
             </Link>
@@ -100,6 +104,7 @@ const MobileNavbar = () => {
             <Link
               href="/"
               className="hover:text-black transition-all ease-in-out duration-300"
+              onClick={() => setActiveMenu(false)}
             >
               Contact Us
             </Link>

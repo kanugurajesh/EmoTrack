@@ -1,11 +1,14 @@
 'use client'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import MobileNavbar from './MobileNavbar'
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import Link from 'next/link'
 
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState(1)
-  const [width, setWidth] = useState(0)
+  const [width, setWidth] = useState(window.innerWidth || 1000)
+
+  const userId = true
 
   useEffect(() => {
     setWidth(window.innerWidth)
@@ -64,12 +67,18 @@ const Navbar = () => {
               ></div>
             </div>
             <div className="flex gap-10 items-center font-bold">
-              <Link
-                href="/sign-up"
-                className="p-3 bg-blue-600 rounded-md text-white hover:text-blue-600 hover:bg-white border-2 border-blue-600 transition-all ease-in-out duration-300"
-              >
-                Register
-              </Link>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <SignedOut>
+                <Link
+                  href="/sign-up"
+                  className="p-3 bg-blue-600 rounded-md text-white hover:text-blue-600 hover:bg-white border-2 border-blue-600 transition-all ease-in-out duration-300"
+                >
+                  Register
+                </Link>
+              </SignedOut>
+
               <Link
                 href="/contact"
                 className="p-3 bg-yellow-500 rounded-md hover:text-yellow-500 text-white hover:bg-white border-2 border-yellow-500 transition-all ease-in-out duration-300"

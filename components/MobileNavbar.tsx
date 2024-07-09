@@ -1,30 +1,31 @@
 'use client'
 
+import { SignedIn, UserButton } from '@clerk/clerk-react'
+import { SignedOut } from '@clerk/nextjs'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const MobileNavbar = () => {
   const [activeMenu, setActiveMenu] = useState(false)
+  const navbarRef = useRef(null)
 
   useEffect(() => {
     if (activeMenu) {
-      // document.body.style.overflow = 'hidden'
-      // document.body.style.height = '100vh'
-      document.body.style.position = 'fixed'
+      document.body.style.overflow = 'hidden'
     } else {
-      // document.body.style.overflow = 'auto'
-      // document.body.style.height = 'auto'
-      document.body.style.position = 'relative'
+      document.body.style.overflow = 'auto'
     }
 
-    // Clean up the effect when the component unmounts or activeMenu changes
     return () => {
       document.body.style.overflow = 'auto'
     }
   }, [activeMenu])
 
   return (
-    <div className={`relative z-10`}>
+    <div className={`relative z-10`} 
+    // @ts-ignore
+      ref={navbarRef}
+     >
       <nav className="p-4 px-10 flex items-center justify-between">
         <Link
           href="/"
@@ -55,7 +56,7 @@ const MobileNavbar = () => {
         </div>
       </nav>
       <div
-        className={`absolute h-screen w-[250px] bg-yellow-500 top-0 ${
+        className={`fixed top-0 h-screen w-[250px] bg-yellow-500 ${
           activeMenu ? 'left-0' : 'left-[-300px]'
         } transition-all ease-in-out duration-700 flex items-center justify-center font-black text-lg text-white`}
       >
@@ -90,17 +91,22 @@ const MobileNavbar = () => {
             </Link>
             <div className="w-0 h-1 group-hover:w-full bg-black transition-all ease-in-out duration-700"></div>
           </div>
-          <div className='group'>
-            <Link
-              href="/sign-up"
-              className="hover:text-black transition-all ease-in-out duration-300"
-              onClick={() => setActiveMenu(false)}
-            >
-              Register
-            </Link>
-            <div className="w-0 h-1 group-hover:w-full bg-black transition-all ease-in-out duration-700"></div>
+          <div className="group">
+            <SignedOut>
+              <Link
+                href="/sign-up"
+                className="hover:text-black transition-all ease-in-out duration-300"
+                onClick={() => setActiveMenu(false)}
+              >
+                Register
+              </Link>
+              <div className="w-0 h-1 group-hover:w-full bg-black transition-all ease-in-out duration-700"></div>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
-          <div className='group'>
+          <div className="group">
             <Link
               href="/contact"
               className="hover:text-black transition-all ease-in-out duration-300"

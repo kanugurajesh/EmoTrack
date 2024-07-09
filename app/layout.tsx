@@ -29,11 +29,11 @@ export default function RootLayout({
       <html lang="en">
         <body
           className={cn(
-            'min-h-screen bg-background font-sans antialiased bg-white p-10 pb-4',
+            'min-h-screen bg-background font-sans antialiased bg-white',
             fontSans.variable
           )}
         >
-          <div className='pt-4 rounded-xl h-full w-full bg-yellow-400 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-100'>
+          <div className='pt-4 rounded-xl h-full w-ful'>
             <Navbar />
             {children}
           </div>

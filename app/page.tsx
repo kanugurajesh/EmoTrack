@@ -27,7 +27,7 @@ export default function Home() {
             </p>
           </h1>
         </div>
-        <Link href="/Home">
+        <Link href="/home">
           <button className="p-3 bg-yellow-500 rounded-md hover:text-yellow-500 text-white hover:bg-white border-2 border-yellow-500 transition-all ease-in-out duration-300 font-bold">
             Get Started
           </button>

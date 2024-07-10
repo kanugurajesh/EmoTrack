@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter as FontSans } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 
 import { cn } from '@/lib/utils'
 
@@ -35,6 +36,7 @@ export default function RootLayout({
         >
           <div className='pt-4 rounded-xl h-full w-ful'>
             <Navbar />
+            <Toaster />
             {children}
           </div>
         </body>

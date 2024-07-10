@@ -5,5 +5,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <SignedIn>{children}</SignedIn>
+  return <SignedIn><div className='px-10'>{children}</div></SignedIn>
 }

@@ -18,3 +18,7 @@ That's why I built EmoTrack. This app helps users take a standard PHQ-9 test to 
 ![Screenshot 2024-07-11 214249](https://github.com/kanugurajesh/EmoTrack/assets/77529419/3aaefaac-c66b-46ac-a893-30e50a61d932)
 ![Screenshot 2024-07-11 214629](https://github.com/kanugurajesh/EmoTrack/assets/77529419/be0c7615-9fb5-4569-ada6-89d0aa97558b)
 ![Screenshot 2024-07-11 214653](https://github.com/kanugurajesh/EmoTrack/assets/77529419/8f592130-a1a9-4cb6-ac87-eade209a7eba)
+
+## Demo
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/nS3GDoRUpZs/0.jpg)](https://www.youtube.com/watch?v=nS3GDoRUpZs)

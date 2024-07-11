@@ -16,7 +16,6 @@ export async function POST(request: NextRequest) {
 
     if (!email) {
         return Response.json({ error: 'Missing email' });
-
     }
 
     if (!message) {

@@ -20,7 +20,7 @@ export function GeminiBot() {
   const handleSubmit = async () => {
     setLoading(true)
     toast.loading('Sending to Gemini...')
-    const response = await sendGemini(textArea)
+    const response = await sendGemini(textArea, 300)
     toast.dismiss()
     if (!response) {
       toast.error('Failed to send to Gemini.')

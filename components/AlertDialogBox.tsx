@@ -16,19 +16,16 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import toast from 'react-hot-toast'
 
-export function AlertDialogBox() {
-  const router = useRouter()
+interface AlertDialogBoxProps {
+  handleSubmit: (e: React.FormEvent) => void
+}
+
+export function AlertDialogBox({handleSubmit}: AlertDialogBoxProps) {
+  
   const dispatch = useAppDispatch()
 
   const incrementBy = (amount: number) => {
     dispatch(incrementByAmount(amount))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    incrementBy(10)
-    toast.success('Data submitted successfully!')
-    router.push('/response')
   }
 
   return (

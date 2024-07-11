@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '@/lib/features/counter/counterSlice'
 import textareaReducer from '@/lib/features/textarea/textareaSlice'
+import scoreReducer from '@/lib/features/score/scoreSlice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       counter: counterReducer,
       textarea: textareaReducer,
+      score: scoreReducer,
     },
   })
 }

@@ -2,11 +2,11 @@
 
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
-const sendGemini = async (message: string) => {
+const sendGemini = async (message: string, tokens: number) => {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string)
   const model = genAI.getGenerativeModel({
     model: 'gemini-1.5-flash',
-    generationConfig: { maxOutputTokens: 300 },
+    generationConfig: { maxOutputTokens: tokens },
   })
 
   try {

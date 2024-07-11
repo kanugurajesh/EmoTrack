@@ -4,7 +4,7 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { PHQ9 } from '@/db/questions'
 import { AlertDialogBox } from './AlertDialogBox'
-import { useAppDispatch, useAppStore } from '../lib/hooks'
+import { useAppDispatch } from '../lib/hooks'
 import { incrementByAmount } from '@/lib/features/counter/counterSlice'
 import { Badge } from '@/components/ui/badge'
 import sendGemini from '@/lib/sendGemini'
@@ -13,7 +13,6 @@ import { updateValue } from '@/lib/features/textarea/textareaSlice'
 const Quiz = () => {
   const [count, setCount] = useState(0)
 
-  // const store = useAppStore()
   const dispatch = useAppDispatch()
   const incrementBy = (amount: number) => {
     dispatch(incrementByAmount(amount))

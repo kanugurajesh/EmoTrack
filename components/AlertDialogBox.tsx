@@ -12,15 +12,23 @@ import {
 import { Button } from '@/components/ui/button'
 import { incrementByAmount } from '@/lib/features/counter/counterSlice'
 import { useAppDispatch } from '@/lib/hooks'
+import { useRouter } from 'next/navigation'
+import React from 'react'
+import toast from 'react-hot-toast'
 
 export function AlertDialogBox() {
+  const router = useRouter()
   const dispatch = useAppDispatch()
+
   const incrementBy = (amount: number) => {
     dispatch(incrementByAmount(amount))
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
     incrementBy(10)
+    toast.success('Data submitted successfully!')
+    router.push('/response')
   }
 
   return (

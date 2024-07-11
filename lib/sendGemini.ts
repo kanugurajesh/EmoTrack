@@ -1,7 +1,6 @@
 'use server'
 
 import { GoogleGenerativeAI } from '@google/generative-ai'
-import { NextResponse } from 'next/server'
 
 const sendGemini = async (message: string) => {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string)
@@ -18,9 +17,8 @@ const sendGemini = async (message: string) => {
     const text = response.text()
 
     return text
-
   } catch (error) {
-    return "Unable to generate output"
+    return 'Unable to generate output'
   }
 }
 

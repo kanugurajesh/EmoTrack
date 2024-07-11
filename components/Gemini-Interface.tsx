@@ -7,11 +7,15 @@ import { useState } from 'react'
 import { Audio } from 'react-loader-spinner'
 import Markdown from 'react-markdown'
 import toast from 'react-hot-toast'
+import { updateValue } from '@/lib/features/textarea/textareaSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '@/lib/store'
 
 export function GeminiBot() {
+  const dispatch = useDispatch()
   const [textArea, setTextArea] = useState('')
+  const geminiResponse = useSelector((state: RootState) => state.textarea.value)
   const [loading, setLoading] = useState(false)
-  const [geminiResponse, setGeminiResponse] = useState('')
 
   const handleSubmit = async () => {
     setLoading(true)
@@ -26,16 +30,18 @@ export function GeminiBot() {
     toast.success('Sent to Gemini!')
     setLoading(false)
     setTextArea('')
-    setGeminiResponse('') // Clear previous response
+    // clearing the previous response
+    dispatch(updateValue(''))
+    // updating the response letter by letter
     for (let i = 0; i < response.length; i++) {
       setTimeout(() => {
-        setGeminiResponse((prev) => prev + response[i])
+        dispatch(updateValue(response.slice(0, i + 1)))
       }, 10 * i)
     }
   }
 
   // listen for shift + enter to submit
-  const handleKeyDown = (e:any) => {
+  const handleKeyDown = (e: any) => {
     if (e.key === 'Enter' && e.shiftKey) {
       e.preventDefault()
       handleSubmit()

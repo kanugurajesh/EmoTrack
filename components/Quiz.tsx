@@ -6,6 +6,9 @@ import { PHQ9 } from '@/db/questions'
 import { AlertDialogBox } from './AlertDialogBox'
 import { useAppDispatch, useAppStore } from '../lib/hooks'
 import { incrementByAmount } from '@/lib/features/counter/counterSlice'
+import { Badge } from '@/components/ui/badge'
+import sendGemini from '@/lib/sendGemini'
+import { updateValue } from '@/lib/features/textarea/textareaSlice'
 
 const Quiz = () => {
   const [count, setCount] = useState(0)
@@ -26,19 +29,34 @@ const Quiz = () => {
   }
 
   const handleSubmit = () => {
+    incrementBy(10)
     if (count < 8) setCount(count + 1)
   }
-  // const initialized = useRef(false)
-  // if (!initialized.current) {
-  //   store.dispatch(initializeProduct(product))
-  //   initialized.current = true
-  // }
-  // const name = useAppSelector((state) => state.product.name)
-  // const dispatch = useAppDispatch()
+
+  const handleExplain = () => {
+    const prompt = `Explain the question + "${PHQ9[count].question}" to me easily`
+    sendGemini(prompt).then((response) => {
+      if (!response) return
+      dispatch(updateValue('')) // clearing the previous response
+      for (let i = 0; i < response.length; i++) {
+        setTimeout(() => {
+          dispatch(updateValue(response.slice(0, i + 1)))
+        }, 10 * i)
+      }
+    })
+  }
 
   return (
     <div className="p-2 flex flex-col gap-6">
-      <h1 className="font-extrabold text-xl">{PHQ9[count].question}</h1>
+      <div className="flex items-center gap-3">
+        <h1 className="font-extrabold text-xl">{PHQ9[count].question}</h1>
+        <Badge
+          className="w-14 items-center justify-center cursor-pointer"
+          onClick={handleExplain}
+        >
+          Explain
+        </Badge>
+      </div>
       <div>
         <RadioGroup defaultValue="0" className="flex flex-col gap-4">
           <div className="flex items-center space-x-2">
@@ -66,7 +84,7 @@ const Quiz = () => {
         >
           Prev
         </Button>
-        {count === 8 ? (
+        {count >= 8 ? (
           <AlertDialogBox />
         ) : (
           <Button onClick={handleSubmit}>Submit</Button>

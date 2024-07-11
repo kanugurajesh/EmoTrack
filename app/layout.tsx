@@ -34,7 +34,7 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
-          <div className='pt-4 rounded-xl h-full w-ful'>
+          <div className="pt-4 rounded-xl h-full w-ful">
             <Navbar />
             <Toaster />
             {children}

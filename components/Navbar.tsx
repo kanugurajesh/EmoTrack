@@ -6,9 +6,7 @@ import Link from 'next/link'
 
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState(1)
-  const [width, setWidth] = useState(window.innerWidth || 1000)
-
-  const userId = true
+  const [width, setWidth] = useState(1000)
 
   useEffect(() => {
     setWidth(window.innerWidth)

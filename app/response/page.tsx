@@ -11,7 +11,11 @@ export const Response = () => {
   const score = useSelector((state: RootState) => state.score.value)
   const [response, setResponse] = useState<string>('')
 
-  const prompt = 'I got a score of ' + score + ' on the PHQ-9.' + ' Can you tell me about the severity of my depression?'
+  const prompt =
+    'I got a score of ' +
+    score +
+    ' on the PHQ-9.' +
+    ' Can you tell me about the severity of my depression?'
   const tokens = 1000
 
   useEffect(() => {
@@ -24,7 +28,9 @@ export const Response = () => {
 
   return (
     <main>
-      <Markdown>{response}</Markdown>
+      <div className='mt-10'>
+        <Markdown>{response}</Markdown>
+      </div>
     </main>
   )
 }

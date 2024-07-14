@@ -6,6 +6,30 @@ However, depression has a straightforward solution: early treatment. If individu
 
 That's why I built EmoTrack. This app helps users take a standard PHQ-9 test to understand their mental condition. 📋 It also features a Gemini bot for asking questions, making it easier for people to get the support they need. 🤖💬
 
+## Project Setup
+
+```
+1. Fork the repo by click on the fork icon on the top
+2. Clone the repo from your github account https://github.com/Your_Username/Emotrack
+3. cd Emotrack
+4. npm install
+5. cp .env.example .env.local
+6. paste in the api keys in the file
+7. run the app
+```
+
+### Environment Keys
+
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+RESEND_API_KEY=
+GEMINI_API_KEY=
+PERSONAL_EMAIL=
+```
+
 ## Screenshots
 
 ![Screenshot 2024-07-11 214112](https://github.com/kanugurajesh/EmoTrack/assets/77529419/a57a3fc4-cdaa-4805-aae8-3168e956bca2)
@@ -18,3 +42,7 @@ That's why I built EmoTrack. This app helps users take a standard PHQ-9 test to 
 ![Screenshot 2024-07-11 214249](https://github.com/kanugurajesh/EmoTrack/assets/77529419/3aaefaac-c66b-46ac-a893-30e50a61d932)
 ![Screenshot 2024-07-11 214629](https://github.com/kanugurajesh/EmoTrack/assets/77529419/be0c7615-9fb5-4569-ada6-89d0aa97558b)
 ![Screenshot 2024-07-11 214653](https://github.com/kanugurajesh/EmoTrack/assets/77529419/8f592130-a1a9-4cb6-ac87-eade209a7eba)
+
+## Demo
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/nS3GDoRUpZs/0.jpg)](https://www.youtube.com/watch?v=nS3GDoRUpZs)

@@ -7,6 +7,8 @@ import Quiz from '@/components/Quiz'
 import { useSelector } from 'react-redux'
 
 export default function Home() {
+  
+  // @ts-ignore
   const progress = useSelector((state: RootState) => state.counter.value)
 
   return (

@@ -34,6 +34,7 @@ const LineChart = () => {
       const response = await fetch('/api/graph')
       const data = await response.json()
       const newData = []
+      
       for (let i = 0; i < data.length; i++) {
         newData.push([updateDate(data[i].date), data[i].value])
       }

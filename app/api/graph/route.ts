@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 
 export async function POST(request: NextRequest) {
   const { score } = await request.json()
-  console.log(score)
   const result = await prisma.score.create({
     data: {
       value: score,

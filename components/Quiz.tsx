@@ -53,7 +53,6 @@ const Quiz = () => {
       body: JSON.stringify({ score: finalScore }),
     })
     const data = await response.json()
-    console.log(data)
   }
 
   // function to handle the submit button

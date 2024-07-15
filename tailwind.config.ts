@@ -81,12 +81,18 @@ const config = {
           from: { transform: "translateY(-10vh)" },
           to: { transform: "translateY(0)" },
         },
+        rotate: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "moveUp": "moveUp 0.5s ease-out",
         "moveDown": "moveDown 0.5s ease-out",
+        'spin-slow': 'spin 3s linear infinite',
+        'rotate': 'rotate 0.8s linear infinite'
       },
     },
   },

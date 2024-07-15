@@ -1,6 +1,6 @@
 // page.js this is the entry point of application
-
 'use client'
+
 import dynamic from 'next/dynamic'
 import 'chart.js/auto'
 import { useEffect, useState } from 'react'

@@ -8,6 +8,7 @@ import html2canvas from 'html2canvas'
 import Markdown from 'react-markdown'
 import { Card } from '@/components/ui/card'
 import sendGemini from '@/lib/sendGemini'
+import toast from 'react-hot-toast'
 
 const Line = dynamic(() => import('react-chartjs-2').then((mod) => mod.Line), {
   ssr: false,
@@ -25,6 +26,7 @@ const LineChart = () => {
   const [response, setResponse] = useState<string>('')
   const chartRef = useRef(null)
 
+  // The below function is used to download the image of the react-charts graph
   const downloadImage = () => {
     // @ts-ignore
     html2canvas(chartRef.current).then((canvas) => {
@@ -35,14 +37,27 @@ const LineChart = () => {
     })
   }
 
+  // The below function set's the resposne
   const slowResponse = (response: string) => {
     setResponse(response)
   }
 
   useEffect(() => {
     const fetchData = async () => {
+      toast.dismiss()
+      toast.loading('Loading data...')
       const response = await fetch('/api/graph')
       const data = await response.json()
+
+      if (data === 'error') {
+        toast.dismiss()
+        toast.error('An error occurred while fetching the data.')
+        return
+      } else {
+        toast.dismiss()
+        toast.success('Data loaded successfully!')
+      }
+
       const newData = []
 
       for (let i = 0; i < data.length; i++) {
@@ -82,7 +97,6 @@ const LineChart = () => {
 
       const geminiResponse = await sendGemini(prompt, 1000)
 
-      // setResponse(geminiResponse)
       slowResponse(geminiResponse)
     }
     fetchData()
@@ -107,7 +121,7 @@ const LineChart = () => {
         <div className="w-full flex flex-col items-center gap-10 mt-10">
           <h1 className="font-bold text-xl">Mood Analysis</h1>
           <div ref={chartRef} className="w-full">
-            <Line data={data} className='w-full max-h-96' />
+            <Line data={data} className="w-full max-h-96" />
           </div>
           <button
             className="p-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-white hover:text-blue-500 border-2 border-blue-500 transition-all ease-in-out duration-300 w-full"
@@ -116,9 +130,15 @@ const LineChart = () => {
             Download as PNG
           </button>
         </div>
-        <Card className="w-full p-8 font-semibold my-14">
-          <Markdown>{response}</Markdown>
-        </Card>
+        {response ? (
+          <Card className="w-full p-8 font-semibold my-14">
+            <Markdown>{response}</Markdown>
+          </Card>
+        ) : (
+          <div className="flex items-center justify-center my-10">
+            <div className="w-20 h-20 border-4 border-white rounded-full border-t-4 border-t-blue-500 border-b-blue-500 animate-rotate"></div>
+          </div>
+        )}
       </div>
     </main>
   )

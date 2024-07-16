@@ -116,7 +116,7 @@ const LineChart = () => {
             Download as PNG
           </button>
         </div>
-        <Card className="w-full p-8 font-semibold mt-[-160px]">
+        <Card className="w-full p-8 font-semibold mt-[-160px] mb-10">
           <Markdown>{response}</Markdown>
         </Card>
       </div>

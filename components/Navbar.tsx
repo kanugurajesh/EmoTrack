@@ -43,14 +43,14 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
-                href="/"
+                href="/about"
                 onClick={() => setActiveTab(2)}
                 className="hover:text-yellow-500 transition-all ease-in-out duration-300 hover:scale-105"
               >
                 About
               </Link>
               <Link
-                href="/"
+                href="/services"
                 onClick={() => setActiveTab(3)}
                 className="hover:text-yellow-500 transition-all ease-in-out duration-300 hover:scale-105"
               >

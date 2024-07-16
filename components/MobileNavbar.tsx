@@ -73,7 +73,7 @@ const MobileNavbar = () => {
           </div>
           <div className="group">
             <Link
-              href="/"
+              href="/about"
               className="hover:text-black transition-all ease-in-out duration-300"
               onClick={() => setActiveMenu(false)}
             >
@@ -83,7 +83,7 @@ const MobileNavbar = () => {
           </div>
           <div className="group">
             <Link
-              href="/"
+              href="/services"
               className="hover:text-black transition-all ease-in-out duration-300"
               onClick={() => setActiveMenu(false)}
             >

@@ -102,12 +102,12 @@ const LineChart = () => {
   }
 
   return (
-    <main className="flex items-center justify-center">
-      <div className="flex flex-col items-center justify-between">
-        <div className="w-[800px] h-[800px] flex flex-col items-center gap-10 mt-10">
+    <main className="flex items-center justify-center w-full">
+      <div className="flex flex-col items-center justify-between w-full">
+        <div className="w-full flex flex-col items-center gap-10 mt-10">
           <h1 className="font-bold text-xl">Mood Analysis</h1>
           <div ref={chartRef} className="w-full">
-            <Line data={data} />
+            <Line data={data} className='w-full max-h-96' />
           </div>
           <button
             className="p-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-white hover:text-blue-500 border-2 border-blue-500 transition-all ease-in-out duration-300 w-full"
@@ -116,7 +116,7 @@ const LineChart = () => {
             Download as PNG
           </button>
         </div>
-        <Card className="w-full p-8 font-semibold mt-[-160px] mb-10">
+        <Card className="w-full p-8 font-semibold my-14">
           <Markdown>{response}</Markdown>
         </Card>
       </div>

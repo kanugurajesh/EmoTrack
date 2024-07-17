@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import sendGemini from '@/lib/sendGemini'
 import { useState } from 'react'
-import { Audio } from 'react-loader-spinner'
 import Markdown from 'react-markdown'
 import toast from 'react-hot-toast'
 import { updateValue } from '@/lib/features/textarea/textareaSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '@/lib/store'
+import Loader from './Loader'
 
 export function GeminiBot() {
   const dispatch = useDispatch()
@@ -58,7 +58,7 @@ export function GeminiBot() {
       />
       <Button onClick={handleSubmit}>
         {loading ? (
-          <Audio height={20} width={20} color="white" />
+          <Loader />
         ) : (
           'Send to Gemini'
         )}

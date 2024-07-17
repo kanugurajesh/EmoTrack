@@ -34,6 +34,8 @@ export default function ChatPage() {
 
   const sendGeminiMessage = async (message: string) => {
     setLoading(true)
+    toast.dismiss()
+    toast.loading('Getting the response...')
 
     try {
       const response = await fetch('/api/chat', {
@@ -48,17 +50,22 @@ export default function ChatPage() {
 
       const data = await response.json()
 
-      console.log(data)
+      if (data.error) {
+        toast.dismiss()
+        toast.error(data.error)
+        return
+      }
 
       const chatMessage: ChatMessage = {
         user: 'model',
         message: data.text,
       }
 
-      console.log(chatMessage)
-
       addMessage(chatMessage)
+      toast.dismiss()
+      toast.success('Response Received!')
     } catch (error) {
+      toast.dismiss()
       toast.error('An error occurred!')
     }
 
@@ -123,6 +130,11 @@ export default function ChatPage() {
                     width={30}
                     height={30}
                     className="rounded-full"
+                    style={{
+                      width: '30px',
+                      height: '30px',
+                      objectFit: 'cover',
+                    }}
                   />
                   <Markdown className="font-semibold">
                     {message.message}

@@ -42,9 +42,6 @@ export async function POST(req: NextRequest) {
     const labels = Object.keys(finalMap)
     const values = Object.values(finalMap)
 
-    console.log(labels)
-    console.log(values)
-
     // Initialize Google Generative AI
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string)
 
@@ -66,7 +63,7 @@ export async function POST(req: NextRequest) {
             {
               text: `My phq-9 scores on dates ${labels.join(
                 ','
-              )} is the scores ${values.join(',')}`,
+              )} is the scores ${values.join(',')} provide answers to the following questions based on the data. It is a project so feel free to give me any guidance.`,
             },
           ],
         },

@@ -3,12 +3,13 @@
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useUser } from '@clerk/nextjs'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 
 export default function ChatPage() {
   const [userImage, setUserImage] = useState<string>('')
   const { user } = useUser()
+  const chatRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setUserImage(user?.imageUrl as string)
@@ -37,10 +38,19 @@ export default function ChatPage() {
     },
   ]
 
+  const handleSubmit = () => {
+    // chatRef.current?.scrollTo(0, chatRef.current?.scrollHeight)
+    const lastMessage = chatRef.current?.lastElementChild as HTMLDivElement
+    lastMessage?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <div className="my-10 h-[80vh]">
       <Card className="p-10 h-full w-full flex flex-col items-center justify-between">
-        <div className="flex flex-col gap-2 w-full h-[70vh] overflow-y-scroll no-scrollbar">
+        <div
+          className="flex flex-col gap-2 w-full h-[70vh] overflow-y-scroll no-scrollbar"
+          ref={chatRef}
+        >
           {chat.map((message, index) => (
             <div
               key={index}
@@ -49,9 +59,9 @@ export default function ChatPage() {
               } w-full p-4`}
             >
               <Card className="inline-block p-4">
-                <div className='flex gap-4'>
+                <div className="flex gap-4">
                   <Image
-                    src={message.user != "model" ? userImage : '/chat.png'}
+                    src={message.user != 'model' ? userImage : '/chat.png'}
                     alt={message.user}
                     width={30}
                     height={30}
@@ -71,7 +81,7 @@ export default function ChatPage() {
             className="border-2 border-black rounded-md p-1 px-3 w-full"
             placeholder="Send Query ..."
           />
-          <Button>Submit</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
         </div>
       </Card>
     </div>

@@ -27,6 +27,7 @@ const Navbar = () => {
           <nav className="flex items-center justify-between p-4 px-10">
             <Link
               href="/"
+              onClick={() => setActiveTab(1)}
               className="flex items-center font-black text-2xl hover:scale-105 transition-all ease-in-out duration-300"
             >
               <h1 className="text-yellow-500 text-6xl max-laptop:text-5xl mr-1">

@@ -6,18 +6,18 @@ import { useUser } from '@clerk/nextjs'
 import { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from '@/lib/hooks'
-import { updateValue } from '@/lib/features/textarea/textareaSlice'
+import { updateValue } from '@/lib/features/chat/chatSlice'
 import { ChatMessage } from '@/lib/features/chat/chatSlice'
-import Image from 'next/image'
 import { RootState } from '@/lib/store'
-
-interface Message {
-  user: string,
-  message: string
-}
+import toast from 'react-hot-toast'
+import Image from 'next/image'
+import Markdown from 'react-markdown'
+import Loader from '@/components/Loader'
 
 export default function ChatPage() {
   const [userImage, setUserImage] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [message, setMessage] = useState<string>('')
   const { user } = useUser()
   const chatRef = useRef<HTMLDivElement>(null)
   const chat = useSelector((state: RootState) => state.chat.messages)
@@ -28,14 +28,77 @@ export default function ChatPage() {
     setUserImage(user?.imageUrl as string)
   }, [user])
 
-  // const addMessage = (data:ChatMessage) => {
-  //   dispatch(updateValue(data))
-  // }
+  const addMessage = (data: ChatMessage) => {
+    dispatch(updateValue(data))
+  }
 
-  const handleSubmit = () => {
-    // chatRef.current?.scrollTo(0, chatRef.current?.scrollHeight)
+  const sendGeminiMessage = async (message: string) => {
+    setLoading(true)
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userPrompt: message,
+        }),
+      })
+
+      const data = await response.json()
+
+      console.log(data)
+
+      const chatMessage: ChatMessage = {
+        user: 'model',
+        message: data.text,
+      }
+
+      console.log(chatMessage)
+
+      addMessage(chatMessage)
+    } catch (error) {
+      toast.error('An error occurred!')
+    }
+
+    setLoading(false)
+  }
+
+  const handleSubmit = async () => {
+    if (message == '') {
+      toast.error('message cannot be empty!')
+      return
+    }
+
+    if (loading) {
+      toast.error('A Request is in Process')
+      return
+    }
+
     const lastMessage = chatRef.current?.lastElementChild as HTMLDivElement
     lastMessage?.scrollIntoView({ behavior: 'smooth' })
+
+    const data: ChatMessage = {
+      user: user?.firstName as string,
+      message: message as string,
+    }
+
+    addMessage(data)
+
+    setMessage('')
+
+    await sendGeminiMessage(message)
+  }
+
+  const handleChangeInput = (e: any) => {
+    setMessage(e.target.value)
+  }
+
+  const handleKeyDown = (e: any) => {
+    if (e.key == 'Enter') {
+      handleSubmit()
+    }
   }
 
   return (
@@ -61,7 +124,9 @@ export default function ChatPage() {
                     height={30}
                     className="rounded-full"
                   />
-                  <p>{message.message}</p>
+                  <Markdown className="font-semibold">
+                    {message.message}
+                  </Markdown>
                 </div>
               </Card>
             </div>
@@ -72,10 +137,15 @@ export default function ChatPage() {
             type="text"
             name=""
             id=""
+            value={message}
             className="border-2 border-black rounded-md p-1 px-3 w-full"
             placeholder="Send Query ..."
+            onChange={handleChangeInput}
+            onKeyDown={handleKeyDown}
           />
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button onClick={handleSubmit} disabled={loading}>
+            {loading ? <Loader /> : 'Submit'}
+          </Button>
         </div>
       </Card>
     </div>

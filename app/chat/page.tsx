@@ -4,39 +4,33 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useUser } from '@clerk/nextjs'
 import { useEffect, useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '@/lib/hooks'
+import { updateValue } from '@/lib/features/textarea/textareaSlice'
+import { ChatMessage } from '@/lib/features/chat/chatSlice'
 import Image from 'next/image'
+import { RootState } from '@/lib/store'
+
+interface Message {
+  user: string,
+  message: string
+}
 
 export default function ChatPage() {
   const [userImage, setUserImage] = useState<string>('')
   const { user } = useUser()
   const chatRef = useRef<HTMLDivElement>(null)
+  const chat = useSelector((state: RootState) => state.chat.messages)
+
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     setUserImage(user?.imageUrl as string)
   }, [user])
 
-  const chat = [
-    {
-      user: 'model',
-      message: 'hello',
-    },
-    {
-      user: 'rajesh',
-      message: 'hello I am rajesh',
-    },
-    {
-      user: 'rajesh',
-      message: 'hello I am rajesh',
-    },
-    {
-      user: 'rajesh',
-      message: 'hello I am rajesh',
-    },
-    {
-      user: 'rajesh',
-      message: 'hello I am rajesh',
-    },
-  ]
+  // const addMessage = (data:ChatMessage) => {
+  //   dispatch(updateValue(data))
+  // }
 
   const handleSubmit = () => {
     // chatRef.current?.scrollTo(0, chatRef.current?.scrollHeight)

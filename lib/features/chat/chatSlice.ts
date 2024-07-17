@@ -1,26 +1,36 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+export interface ChatMessage {
+  user: string
+  message: string
+}
 
 export interface ChatState {
-    user: string;
-    message: string;
+  messages: ChatMessage[]
 }
 
 const initialState: ChatState = {
-    user: '',
-    message: ''
-};
+  messages: [
+    {
+      user: 'model',
+      message: 'Hello I am Gemini Chat with me?',
+    },
+  ],
+}
 
 export const chatSlice = createSlice({
-    name: 'chat',
-    initialState,
-    reducers: {
-        updateValue: (state, action: PayloadAction<string>) => {
-            state.message = action.payload; // Assuming action.payload is a string to update the message
-        },
-        // Add other reducers as needed
-    }
-});
+  name: 'chat',
+  initialState,
+  reducers: {
+    updateValue: (state, action: PayloadAction<ChatMessage>) => {
+      state.messages.push({
+        user: action.payload.user,
+        message: action.payload.message,
+      })
+    },
+  },
+})
 
-export const { updateValue } = chatSlice.actions;
+export const { updateValue } = chatSlice.actions
 
-export default chatSlice.reducer;
+export default chatSlice.reducer

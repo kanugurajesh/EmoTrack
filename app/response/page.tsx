@@ -42,7 +42,13 @@ const Response = () => {
             href="/dashboard"
             className="bg-blue-500 p-4 font-bold rounded-md text-white hover:bg-white hover:text-blue-500 transition-all ease-in-out duration-300 border-2 border-blue-500"
           >
-            Go To Dashboard
+            Dashboard
+          </Link>
+          <Link
+            href="/chat"
+            className="bg-blue-500 p-4 font-bold rounded-md text-white hover:bg-white hover:text-blue-500 transition-all ease-in-out duration-300 border-2 border-blue-500"
+          >
+            Go To Chat
           </Link>
         </div>
         {response ? (

@@ -54,6 +54,20 @@ export default function Contact() {
           }),
         });
 
+        try {
+          const response = await fetch("/api/hello", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+            }),
+          }) 
+        } catch (error) {
+          console.log("")
+        }
+
         const data = await response.json();
 
         setLoading(false);

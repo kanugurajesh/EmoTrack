@@ -8,3 +8,4 @@ export const helloWorld = inngest.createFunction(
     return { event, body: "Hello, World!" };
   },
 );
+

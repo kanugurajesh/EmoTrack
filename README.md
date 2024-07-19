@@ -49,4 +49,4 @@ PERSONAL_EMAIL=
 
 ## Demo
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ishSpscxE0U/0.jpg)](https://www.youtube.com/watch?v=nS3GDoRUpZs)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ishSpscxE0U/0.jpg)](https://youtu.be/ishSpscxE0U)
